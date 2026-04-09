@@ -1,7 +1,62 @@
-body {
-    background-image: url('Imagens/abstract-marble-black-gold-background.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #000; /* Fundo preto caso a imagem demore a carregar */
-    image-rendering: auto; 
+/* Tirar todas as bordas e espaços indesejados */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica;
+}
+
+/* Estilo da barra */
+.navbar {
+    background-color: #000; /* cor preta */
+    display: flex;
+    justify-content: space-between; /* alinha o texto tem como base a esquerda e direita da pagina */
+    align-items: center;
+    padding: 30px 50px; 
+    /* rem é uma tag que por padrão equivale a 16 px de borda interna,
+    porem se torna responsivo a personalização de de tamanho de fonte que o usuário definir.
+    '1 rem' define 16px para todos os sentidos, '1 rem 2 rem' define 16 em cima/baixo, 32 nas laterias.*/
+    color: white;
+}
+
+/* estilo da logo */
+.logo {
+    font-size: 2rem;
+    font-family: 'Apple Chancery', cursive;
+    line-height: 1.0;
+    padding-left: 3rem;
+}
+
+/* estilo para segunda linha do logo */
+.logo span {
+    font-size: 2rem;
+    display: block; /* garante que ela fique de fato na linha de baixo*/
+    padding-left: 70px; /* recuo para ficar 'centralizado' em relação ao texto da primeira linha */
+    font-weight: lighter;
+
+
+}
+
+/* estilo lista de links */
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+.nav-links li a{
+    margin-left: 20px;
+    font-family: 'Apple Chancery', cursive;
+}
+
+/* estilo dos links */
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3;
+    font-size: 1.2rem;
+}
+
+/* efeito ao passar o mouse */
+.nav-links a:hover {
+    color: #ff9900; /* cor de destaque */
 }
