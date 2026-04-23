@@ -1,5 +1,5 @@
 /* =========================================
-   1. RESET E FUNDO GLOBAL (CINZA ESCURO)
+   1. RESET BÁSICO
 ========================================= */
 
 * {
@@ -9,30 +9,72 @@
     font-family: Helvetica, sans-serif;
 }
 
+html {
+    background-color: #000;
+    /* Cor absoluta do fundo da página */
+}
+
 body {
-    /* Fundo Cinza Escuro sólido no lugar da imagem Versace */
-    background-color: #363636;
     margin: 0;
+    /* Removemos o background-image daqui para acabar com o bug do Safari */
 }
 
 
 /* =========================================
-   2. NAVBAR (CABEÇALHO MAIS LARGO)
+   2. FUNDO VERSACE GLOBAL (CORREÇÃO DEFINITIVA IOS/ANDROID)
+========================================= */
+
+
+/* Camada da Imagem (Perfeita e sem zoom estourado) */
+
+body::after {
+    content: "";
+    position: fixed;
+    /* Esticamos a imagem além da tela para a barra do iPhone não bugar */
+    top: -50px;
+    bottom: -50px;
+    left: -50px;
+    right: -50px;
+    background-image: url('images/versace.png');
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+}
+
+
+/* Camada do Escurecimento (Protege 100% da leitura) */
+
+body::before {
+    content: "";
+    position: fixed;
+    /* Esticamos a película escura também */
+    top: -50px;
+    bottom: -50px;
+    left: -50px;
+    right: -50px;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: -1;
+}
+
+
+/* =========================================
+   3. NAVBAR (CABEÇALHO) - DESKTOP
 ========================================= */
 
 .navbar {
-    background-color: #000 !important;
+    background-color: transparent !important;
+    /* Remove o fundo preto e deixa a textura Versace visível */
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 40px 50px;
-    /* Mais grossa e imponente */
+    padding: 70px 50px;
+    /* Altura do cabeçalho no PC */
     position: relative;
     z-index: 10;
 }
 
 
-/* Centraliza a Logo Absolutamente */
+/* Centraliza a Logo no PC */
 
 .logo {
     position: absolute;
@@ -44,7 +86,8 @@ body {
 }
 
 .logo img {
-    max-height: 250px;
+    height: 370px;
+    /* Tamanho da logo no PC */
     width: auto;
     object-fit: contain;
     mix-blend-mode: lighten;
@@ -63,7 +106,7 @@ body {
 }
 
 .nav-links a img {
-    max-height: 45px;
+    height: 40px;
     width: auto;
     object-fit: contain;
     mix-blend-mode: lighten;
@@ -76,7 +119,7 @@ body {
 
 
 /* =========================================
-   3. CARROSSEL (SWIPER)
+   4. CARROSSEL (SWIPER)
 ========================================= */
 
 .swiper {
@@ -112,9 +155,6 @@ body {
     transform: scale(1.10);
 }
 
-
-/* Setas e Paginação */
-
 .swiper-pagination {
     position: relative;
     margin-top: 20px;
@@ -141,7 +181,7 @@ body {
 
 
 /* =========================================
-   4. SERVIÇOS LUXO (CARDS)
+   5. SERVIÇOS LUXO (CARDS)
 ========================================= */
 
 .servicos {
@@ -243,7 +283,7 @@ body {
 
 
 /* =========================================
-   5. DIFERENCIAIS
+   6. DIFERENCIAIS
 ========================================= */
 
 .diferenciais {
@@ -299,22 +339,20 @@ body {
 
 
 /* =========================================
-   6. RODAPÉ (FOOTER MAIS FINO)
+   7. RODAPÉ (FOOTER) - DESKTOP
 ========================================= */
 
 .footer-final {
     background-color: #000 !important;
     color: white;
-    padding: 15px 20px;
-    /* Mais fino e discreto */
+    padding: 5px 20px;
     text-align: center;
     position: relative;
     z-index: 10;
 }
 
 .footer-logo {
-    max-height: 120px;
-    /* Logo um pouco menor */
+    height: 155px;
     margin-bottom: 10px;
     filter: brightness(0) invert(1);
 }
@@ -339,62 +377,47 @@ body {
 
 
 /* =========================================
-   7. RESPONSIVIDADE (CELULARES E TABLETS)
+   8. RESPONSIVIDADE (CELULARES E TABLETS)
 ========================================= */
 
 @media (max-width: 768px) {
-    /* ==========================================
-       1. CONTROLE DA NAVBAR (CABEÇALHO NO MOBILE)
-       ========================================== */
+    /* Navbar Transparente sobreposta */
     .navbar {
+        background-color: transparent !important;
         flex-direction: row;
-        /* Coloca a logo e os ícones lado a lado */
         justify-content: space-between;
-        /* Joga a logo para a esquerda e ícones para a direita */
         align-items: center;
-        padding: 1px 20px;
-        /* Mantém o fundo preto fininho */
+        padding: 20px;
+        position: relative;
+        z-index: 10;
     }
     .logo {
         position: static;
-        /* Tira a logo do meio da tela para não encavalar nas redes sociais */
         transform: none;
     }
-    /* Tamanho INDIVIDUAL da Logo no Cabeçalho Mobile */
     .logo img {
-        height: 120px;
-        /* Altura ajustada para caber bem na lateral */
+        height: 50px;
         width: auto;
         transform: scale(1);
     }
-    /* Tamanho e espaço dos ícones (Insta e Whats) */
     .nav-links {
         gap: 15px;
-        /* Espaço entre o Insta e o Whats */
     }
     .nav-links a img {
-        height: 19px;
-        /* Tamanho dos ícones para acompanhar a logo lateral */
+        height: 25px;
     }
-    /* ==========================================
-       2. CONTROLE DO FOOTER (RODAPÉ)
-       ========================================== */
+    /* MANTÉM O FOOTER PRETO */
     .footer-final {
-        /* O PRIMEIRO NÚMERO (10px) controla a grossura do fundo preto do rodapé */
-        padding: 10px 20px;
+        background-color: #000 !important;
+        padding: 15px 20px;
     }
-    /* Tamanho INDIVIDUAL da Logo no Rodapé */
     .footer-logo {
-        height: 95px;
-        /* Aumente ou diminua para mudar APENAS a logo do rodapé */
-        width: auto;
+        height: 35px;
         margin-bottom: 5px;
     }
-    /* ==========================================
-       3. RESTANTE DO SITE (CARROSSEL, TEXTOS)
-       ========================================== */
+    /* Ajustes do Site */
     .swiper {
-        padding: 20px 0;
+        padding: 10px 0 30px 0;
     }
     .card {
         height: 220px;
@@ -402,7 +425,6 @@ body {
     }
     .servicos-header h2 {
         font-size: 1.5rem;
-        margin-bottom: 15px;
     }
     .servicos-header p {
         font-size: 0.9rem;
@@ -416,12 +438,11 @@ body {
     }
     .titulo-serif {
         font-size: 1.6rem;
-        margin-bottom: 30px;
     }
 }
 
 
-/* Ajustes para Celulares menores (até 600px) */
+/* Ajustes para Celulares bem pequenos (até 600px) */
 
 @media (max-width: 600px) {
     .diferencial-item {
